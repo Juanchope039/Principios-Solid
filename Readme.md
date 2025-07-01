@@ -1,7 +1,7 @@
 Principios S.O.L.I.D
 
 - SRP (Single Responsibility Principe) - Principio de responsabilidad unica
-- O
+- OCP (Open Close Principe) - Principio abierto - cerrado
 - L
 - I
 - D

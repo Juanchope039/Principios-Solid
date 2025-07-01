@@ -1,4 +1,4 @@
-package com.principios.solid.s;
+package com.principios.solid.srp;
 
 /// SRP (Single Responsibility Principe) - Principio de responsabilidad unica
 

@@ -1,4 +1,4 @@
-package com.principios.solid.s.extra;
+package com.principios.solid.srp.extra;
 
 import java.util.ArrayList;
 
