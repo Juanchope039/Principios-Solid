@@ -4,4 +4,4 @@ Principios S.O.L.I.D
 - OCP (Open Close Principe) - Principio abierto / cerrado
 - LSP (Liskov Substitution Principe) - Principio de sustitución de Liskov
 - ISP (Interfaces Segregation Principe) - Principio de segregación de interfaces
-- D
+- DIP (Dependencies Inversion Principe) - Principio de inversión de dependencias
