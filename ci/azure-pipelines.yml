@@ -29,7 +29,7 @@ steps:
   inputs:
     script: |
       cd $(Build.ArtifactStagingDirectory)
-      git clone https://github.com/Juanchope039/Principios-Solid.git
+      git clone https://github.com/Juanchope039/Principios-Solid.git p
   displayName: 'Setting GitHub account'
 
 - task: CmdLine@2
@@ -44,7 +44,7 @@ steps:
   inputs:
     SourceFolder: '**/*'
     Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
 
 - script: |
     dir
