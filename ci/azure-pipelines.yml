@@ -33,10 +33,10 @@ steps:
 #  displayName: 'Setting GitHub account'
 
 - script: |
-    echo git status 
-    git status
     echo git switch $(branchName) 
     git switch $(branchName) 
+    echo git status 
+    git status
     echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     echo git branch $(branchName) 
@@ -45,8 +45,8 @@ steps:
     git checkout $(branchName)
     echo git branch 
     git branch
-    echo git pull github $(branchName) 
-    git pull github $(branchName)
+    echo git pull --all
+    git pull --all
     echo git push -u github $(branchName) 
     git push -u github $(branchName)
   displayName: 'Setting GitHub account'
