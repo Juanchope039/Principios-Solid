@@ -35,14 +35,8 @@ steps:
     git branch $(branchName)
     git checkout $(branchName)
     git branch
-    git pull origin $(branchName)
     git pull github $(branchName)
     echo git push HEAD:github $(branchName)
-    echo $(isMain)
-    echo $(isDevelop)
-    echo $(isQuality)
-    echo $(isAzurePipelines)
-    echo $(branchName)
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
