@@ -5,14 +5,11 @@
 
 trigger:
 - main
-- develop
-- quality
+- azurePipelines
 
 pr:
-- main
 - develop
 - quality
-- azurePipelines
 
 pool:
   vmImage: ubuntu-latest
