@@ -33,7 +33,7 @@ steps:
     git status
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     git checkout -b $(branchName)
-    git main $(branchName)
+    git branch $(branchName)
     git checkout $(branchName)
     git branch
     git pull github $(branchName)
