@@ -39,6 +39,8 @@ steps:
     git fetch github
     echo git config advice.diverging true 
     git config advice.diverging true
+    echo git rebase github/$(branchName)
+    git rebase github/$(branchName)
     echo git pull -f github $(branchName) 
     git pull -f github $(branchName)
     echo git push -u github $(branchName) 
