@@ -28,7 +28,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      dir $(SourcesDirectory)
+      dir $(Build.SourcesDirectory)
       cd $(Build.ArtifactStagingDirectory)
       dir $(Build.ArtifactStagingDirectory)
       git clone https://github.com/Juanchope039/Principios-Solid.git p
@@ -39,7 +39,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(SourcesDirectory)/'
+    SourceFolder: '$(Build.SourcesDirectory)/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
 
