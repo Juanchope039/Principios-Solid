@@ -28,21 +28,16 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      dir $(SourcesDirectory)
       cd $(Build.ArtifactStagingDirectory)
       git clone https://github.com/Juanchope039/Principios-Solid.git p
-  displayName: 'Setting GitHub account'
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      dir $(Build.ArtifactStagingDirectory)
       git config --global user.email "juanchope039@gmail.com"
       git config --global user.name "Juan David Garzón Vallejo"
   displayName: 'Setting GitHub credentials'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '*/*'
+    SourceFolder: '$(SourcesDirectory)/'
     Contents: '*.*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
 
