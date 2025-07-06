@@ -35,7 +35,7 @@ steps:
 - script: |
     echo git status 
     git status
-    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git ->
+    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     echo git branch $(branchName) 
     git branch $(branchName)
