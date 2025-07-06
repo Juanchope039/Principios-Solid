@@ -18,6 +18,7 @@ pool:
 steps:
 - checkout: self
   clean: true
+  persistCredentials: true
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
