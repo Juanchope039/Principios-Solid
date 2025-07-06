@@ -35,9 +35,9 @@ steps:
     git remote add github https://github.com/Juanchope039/Principios-Solid.git
     git remote -v
     git branch 
-    #-m  $(isQuality)
-    git pull github $(isQuality)
-    git push github $(isQuality)
+    git checkout -b $(branchName)
+    git pull github $(branchName)
+    git push github $(branchName)
     echo $(isMain)
     echo $(isDevelop)
     echo $(isQuality)
