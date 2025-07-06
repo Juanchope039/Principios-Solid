@@ -31,11 +31,9 @@ steps:
 
 - script: |
     git status
-    git checkout head
-    git remote add github https://github.com/Juanchope039/Principios-Solid.git
-    git remote -v
-    git branch 
+    git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     git checkout -b $(branchName)
+    git branch
     git pull github $(branchName)
     git push github $(branchName)
     echo $(isMain)
