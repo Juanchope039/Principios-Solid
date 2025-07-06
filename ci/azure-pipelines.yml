@@ -22,13 +22,14 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- script: |
-    git status
-  displayName: 'Setting GitHub account'
-
 - task: CmdLine@2
   inputs:
     script: git status
+  displayName: 'Setting GitHub account'
+
+- script: |
+    git status
+    git checkout head
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
