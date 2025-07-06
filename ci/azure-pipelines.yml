@@ -29,7 +29,7 @@ steps:
   inputs:
     script: |
       dir
-      git clone https://github.com/Juanchope039/Principios-Solid.git
+#      git clone https://github.com/Juanchope039/Principios-Solid.git
   displayName: 'Setting GitHub account'
 
 - task: CmdLine@2
@@ -42,20 +42,16 @@ steps:
 
 - script: |
     dir
-#    echo git switch $(branchName) 
-#    git switch $(branchName) 
-#    echo git status 
-#    git status
-#    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-#    git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-#    echo git fetch github
-#    git fetch github
-#    echo git config advice.diverging true 
-#    git config advice.diverging true
-#    echo git merge --no-ff github/$(branchName)
-#    git merge --no-ff github/$(branchName)
-#    echo git pull -f github $(branchName) 
-#    git pull -f github $(branchName)
+    echo git switch $(branchName) 
+    git switch $(branchName) 
+    echo git status 
+    git status
+    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
+    git remote add github https://github.com/Juanchope039/Principios-Solid.git 
+    echo git fetch github
+    git fetch github
+    echo git pull -f github $(branchName) 
+    git pull -f github $(branchName)
 #    echo git push -u github $(branchName) 
 #    git push -u github $(branchName)
   displayName: 'Setting GitHub account'
