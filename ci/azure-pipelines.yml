@@ -20,13 +20,15 @@ steps:
   clean: true
   persistCredentials: true
 
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+#- script: echo Hello, world!
+#  displayName: 'Run a one-line script'
 
-#- task: CmdLine@2
-#  inputs:
-#    script: git status
-#  displayName: 'Setting GitHub account'
+- task: CmdLine@2
+  inputs:
+    script: |
+      git config --global user.email "juanchope039@gmail.com"
+      git config --global user.name "Juan David Garzón Vallejo"
+  displayName: 'Setting GitHub credentials'
 
 - script: |
     echo git switch $(branchName) 
