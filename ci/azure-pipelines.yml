@@ -35,10 +35,10 @@ steps:
 - script: |
     git status
     git checkout head
-    git remote -v
     git remote add github https://github.com/Juanchope039/Principios-Solid.git
-    echo git push origin $(Build.SourceBranch)
-    echo $(Build.SourceBranch)
+    git remote -v
+    echo git push origin2 $(Build.SourceBranch)
+    echo $(isMain)
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
