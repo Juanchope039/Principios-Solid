@@ -35,12 +35,10 @@ steps:
     git status
     echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-    echo git branch 
-    git branch
     echo git fetch github
     git fetch github
-    echo git config advice.diverging false 
-    git config advice.diverging false
+    echo git config advice.diverging true 
+    git config advice.diverging true
     echo git pull -f github $(branchName) 
     git pull -f github $(branchName)
     echo git push -u github $(branchName) 
