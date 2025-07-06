@@ -36,8 +36,8 @@ steps:
     git status
     git checkout head
     git remote -v
-    git remote add origin https://github.com/Juanchope039/Principios-Solid.git
-    echo git push origin main
+    git remote add github https://github.com/Juanchope039/Principios-Solid.git
+    echo git push origin $(Build.SourceBranch)
     echo $(Build.SourceBranch)
   displayName: 'Setting GitHub account'
 
