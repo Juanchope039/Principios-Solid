@@ -37,7 +37,7 @@ steps:
     git checkout $(branchName)
     git branch
     git pull github $(branchName)
-    git push github $(branchName)
+    git push HEAD:github $(branchName)
     echo $(isMain)
     echo $(isDevelop)
     echo $(isQuality)
