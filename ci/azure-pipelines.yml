@@ -23,7 +23,7 @@ steps:
     git config --global --add filter.lfs.clean "git-lfs clean -- %%f"
   displayName: Configure LFS for use with submodules
 - checkout: self
-  lfs: false
+  lfs: true
   submodules: true
 #- checkout: self
 #  clean: true
@@ -34,6 +34,7 @@ steps:
 
 - script: |
     ls
+    git clone https://github.com/Juanchope039/Principios-Solid.git
   displayName: 'Setting GitHub account'
 - task: CmdLine@2
   inputs:
