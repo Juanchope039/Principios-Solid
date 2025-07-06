@@ -21,3 +21,15 @@ steps:
   submodules: true
   clean: true
   persistCredentials: true
+  
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'GitHub principios Solid'
+    repositoryName: 'Juanchope039/Principios-Solid'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+    releaseNotesSource: 'inline'
+    releaseNotesInline: '.'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
