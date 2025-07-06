@@ -36,6 +36,7 @@ steps:
     git remote -v
     echo git push origin2 $(Build.SourceBranch)
     echo $(isMain)
+    echo $(isAzurePipelines)
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
