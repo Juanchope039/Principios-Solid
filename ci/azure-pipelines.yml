@@ -41,10 +41,6 @@ steps:
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     echo git branch 
     git branch
-    echo git config pull.ff only
-    git config pull.ff only
-    echo git merge --no-ff github $(branchName)
-    git merge --no-ff github $(branchName)
     echo git pull github $(branchName) 
     git pull github $(branchName)
     echo git push -u github $(branchName) 
