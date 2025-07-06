@@ -34,7 +34,7 @@ steps:
     git checkout head
     git remote add github https://github.com/Juanchope039/Principios-Solid.git
     git remote -v
-    echo git push origin2 $(Build.SourceBranch)
+    git push origin2 $(Build.SourceBranch)
     echo $(isMain)
     echo $(isDevelop)
     echo $(idDevelop)
