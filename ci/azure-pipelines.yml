@@ -41,7 +41,7 @@ steps:
     git fetch github
     echo git config advice.diverging false 
     git config advice.diverging false
-    echo git pull github $(branchName) 
+    echo git pull -f github $(branchName) 
     git pull github $(branchName)
     echo git push -u github $(branchName) 
     git push -u github $(branchName)
