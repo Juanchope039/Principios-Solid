@@ -39,7 +39,7 @@ steps:
     git checkout $(branchName)
     git branch
     git pull github $(branchName)
-    echo git push HEAD:github $(branchName)
+    git push github $(branchName)
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
