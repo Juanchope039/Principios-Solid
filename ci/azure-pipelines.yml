@@ -8,6 +8,12 @@ trigger:
 - develop
 - quality
 
+pr:
+- main
+- develop
+- quality
+- azurePipelines
+
 pool:
   vmImage: ubuntu-latest
   name: Default
@@ -21,8 +27,18 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: CmdLine@2
+  inputs:
+    script: git status
+  displayName: 'Setting GitHub account'
+
 - script: |
-    echo git status
+    git status
+    git checkout head
+    git remote -v
+    git remote add origin https://github.com/Juanchope039/Principios-Solid.git
+    echo git push origin main
+    echo $(Build.SourceBranch)
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
