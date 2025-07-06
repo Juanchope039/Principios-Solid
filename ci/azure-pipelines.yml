@@ -33,19 +33,19 @@ steps:
 #  displayName: 'Setting GitHub account'
 
 - script: |
-    echo git status ->
+    echo git status 
     git status
     echo git remote add github https://github.com/Juanchope039/Principios-Solid.git ->
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-    echo git branch $(branchName) ->
+    echo git branch $(branchName) 
     git branch $(branchName)
-    echo git checkout $(branchName) ->
+    echo git checkout $(branchName) 
     git checkout $(branchName)
-    echo git branch ->
+    echo git branch 
     git branch
-    echo git pull github $(branchName) ->
+    echo git pull github $(branchName) 
     git pull github $(branchName)
-    echo git push -u github $(branchName) ->
+    echo git push -u github $(branchName) 
     git push -u github $(branchName)
   displayName: 'Setting GitHub account'
 
