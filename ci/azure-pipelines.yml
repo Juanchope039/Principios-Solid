@@ -42,8 +42,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '**/*'
-    Contents: '**'
+    SourceFolder: '*/*'
+    Contents: '*.*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
 
 - script: |
