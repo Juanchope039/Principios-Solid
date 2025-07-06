@@ -7,6 +7,11 @@ trigger:
 - main
 - develop
 - quality
+
+pr:
+- main
+- develop
+- quality
 - azurePipelines
 
 pool:
@@ -30,6 +35,10 @@ steps:
 - script: |
     git status
     git checkout head
+    git remote -v
+    git remote add origin https://github.com/Juanchope039/Principios-Solid.git
+    echo git push origin main
+    echo $(Build.SourceBranch)
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
