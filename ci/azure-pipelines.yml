@@ -32,10 +32,11 @@ steps:
 - script: |
     git status
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-    git branch -b $(branchName)
+    git branch $(branchName)
+    git checkout $(branchName)
     git branch
     git pull origin $(branchName)
-    echo git pull github $(branchName)
+    git pull github $(branchName)
     echo git push HEAD:github $(branchName)
     echo $(isMain)
     echo $(isDevelop)
