@@ -37,6 +37,8 @@ steps:
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     echo git branch 
     git branch
+    echo git fetch github
+    git fetch github
     echo git config advice.diverging false 
     git config advice.diverging false
     echo git pull github $(branchName) 
