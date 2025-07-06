@@ -29,7 +29,10 @@ steps:
   inputs:
     script: |
       dir
+      cd $(Build.ArtifactStagingDirectory)
+      dir
       git clone https://github.com/Juanchope039/Principios-Solid.git
+#      git clone https://juandavidgarznn@dev.azure.com/juandavidgarznn/Arquitectura%20Limpia/_git/Arquitectura%20Limpia
   displayName: 'Setting GitHub account'
 
 - task: CmdLine@2
