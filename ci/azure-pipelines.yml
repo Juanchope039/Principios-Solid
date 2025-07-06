@@ -34,7 +34,7 @@ steps:
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     git branch -b $(branchName)
     git branch
-    echo git pull origin $(branchName)
+    git pull origin $(branchName)
     echo git pull github $(branchName)
     echo git push HEAD:github $(branchName)
     echo $(isMain)
