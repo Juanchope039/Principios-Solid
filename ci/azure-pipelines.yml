@@ -48,10 +48,10 @@ steps:
     git status
     echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-    echo git fetch github
-    git fetch github
-    echo git pull -f github $(branchName) 
-    git pull -f github $(branchName)
+    echo git fetch origin
+    git fetch origin
+    echo git pull origin $(branchName) 
+    git pull origin $(branchName)
 #    echo git push -u github $(branchName) 
 #    git push -u github $(branchName)
   displayName: 'Setting GitHub account'
