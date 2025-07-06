@@ -34,11 +34,13 @@ steps:
     git checkout head
     git remote add github https://github.com/Juanchope039/Principios-Solid.git
     git remote -v
-    git push origin2 $(Build.SourceBranch)
+    git branch -m  $(isQuality)
+    git push origin2 $(isQuality)
     echo $(isMain)
     echo $(isDevelop)
-    echo $(idDevelop)
+    echo $(isQuality)
     echo $(isAzurePipelines)
+    echo $(branchName)
   displayName: 'Setting GitHub account'
 
 - task: GitHubComment@0
