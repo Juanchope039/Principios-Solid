@@ -21,8 +21,13 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- script: |
+    echo git status
+  displayName: 'Setting GitHub account'
+
 - task: GitHubComment@0
   inputs:
     gitHubConnection: 'GitHub principios Solid'
     repositoryName: 'Juanchope039/Principios-Solid'
     comment: 'se genera una nueva contribución atraves de azure'
+
