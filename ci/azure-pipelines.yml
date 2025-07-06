@@ -16,6 +16,9 @@ pool:
   name: Default
 
 steps:
+- checkout: self
+  clean: true
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
