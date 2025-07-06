@@ -30,7 +30,7 @@ steps:
     script: |
       dir
 #      git clone https://github.com/Juanchope039/Principios-Solid.git
-  displayName: 'Setting GitHub account'
+  displayName: 'testing'
 
 - task: CmdLine@2
   inputs:
@@ -50,6 +50,8 @@ steps:
     git remote add github https://github.com/Juanchope039/Principios-Solid.git 
     echo git fetch origin
     git fetch origin
+    echo git rebase origin/$(branchName) 
+    git rebase origin/$(branchName) 
     echo git pull origin $(branchName) 
     git pull origin $(branchName)
 #    echo git push -u github $(branchName) 
