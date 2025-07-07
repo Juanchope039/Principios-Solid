@@ -51,7 +51,6 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
-  condition: succeededOrFailed()
 
 - script: |
     dir
@@ -70,7 +69,6 @@ steps:
     echo git push origin $(branchName) 
     git push origin $(branchName)
   displayName: 'Setting GitHub account'
-  condition: succeededOrFailed()
 
 
 #    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
