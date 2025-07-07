@@ -52,8 +52,13 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      cd $(Build.ArtifactStagingDirectory)/p
       git config --global user.email "juanchope039@gmail.com"
       git config --global user.name "Juan David Garzón Vallejo"
+      echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
+      git remote add github https://github.com/Juanchope039/Principios-Solid.git 
+      echo git fetch github
+      git fetch github
   displayName: 'Setting GitHub credentials'
   condition: failed()
 
@@ -81,34 +86,25 @@ steps:
     git add .
     echo git commit -am "new Release Of Azure Dev ops to $(branchName)"
     git commit -am "new Release Of Azure Dev ops to $(branchName)"
-    echo git status 
-    git status
-
-    echo git pull origin $(branchName) 
-    git pull origin $(branchName)
-    echo git status 
-    git status
-
     
+    echo git status 
+    git status
+    echo git pull github $(branchName) 
+    git pull github $(branchName)
+
+    echo git status 
+    git status    
+    echo git checkout head 
+    git checkout head
     echo git checkout -b $(branchName)
     git checkout -b $(branchName)
     echo git remote -v
     git remote -v
-#    echo git push origin HEAD:$(branchName) 
-#    git push origin HEAD:$(branchName)
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
-
-
-#    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-#    git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-#    echo git fetch github
-#    git fetch github
-#    echo git config advice.diverging true 
-#    git config advice.diverging true
-#    echo git merge --no-ff github/$(branchName)
-#    git merge --no-ff github/$(branchName)
-
+  
+#    echo git push github HEAD:$(branchName) 
+#    git push github HEAD:$(branchName)
 
 #    echo git -M $(branchName) 
 #    git -M $(branchName) 
