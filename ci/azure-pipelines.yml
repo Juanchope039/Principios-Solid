@@ -17,6 +17,8 @@ pool:
 
 steps:
 - checkout: self
+  lfs: true
+  clean: false
   persistCredentials: true
 
 #- script: echo Hello, world!
