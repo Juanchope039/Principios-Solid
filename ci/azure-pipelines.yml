@@ -29,7 +29,7 @@ steps:
     targetType: 'inline'
     script: |
       dir
-      git clone https://github.com/Juanchope039/Principios-Solid.git p
+      git clone $(repoGitHub) p
       cd p 
       git checkout -b test
       git pull origin $(branchName)
@@ -61,11 +61,14 @@ steps:
     targetType: 'inline'
     script: |
       echo git config --global
-      git config --global user.email "juanchope039@gmail.com"
-      git config --global user.name "Juan David Garzón Vallejo"
+      git config --global user.email "$(email)"
+      git config --global user.name "$(name)"
 
-      echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-      git remote add github https://github.com/Juanchope039/Principios-Solid.git 
+      echo git remote -v
+      git remote -v
+
+      echo git remote add github $(repoGitHub) 
+      git remote add github $(repoGitHub)
 
       echo git fetch github
       git fetch github
@@ -86,6 +89,14 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
   condition: succeededOrFailed()
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
+  condition: succeededOrFailed()
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -94,8 +105,8 @@ steps:
       
       echo git add .
       git add .
-      echo git commit -am "new Release Of Azure Dev ops to $(branchName)"
-      git commit -am "new Release Of Azure Dev ops to $(branchName)"
+      echo git commit -am "$(comment)"
+      git commit -am "$(comment)"
       
       echo git status 
       git status
@@ -108,13 +119,20 @@ steps:
       git switch -c $(branchName)
       echo git remote -v
       git remote -v
-
-      echo git push github $(branchName) 
-      git push github $(branchName)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      git request-pull -p $(branchName) $(repoGitHub) $(repoAzure)
+    workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Generate Pull Request'
+  condition: succeededOrFailed()
+#echo git push github $(branchName) 
+#      git push github $(branchName)
 
 #    echo git -M $(branchName) 
 #    git -M $(branchName) 
