@@ -44,12 +44,14 @@ steps:
       git config --global user.email "juanchope039@gmail.com"
       git config --global user.name "Juan David Garzón Vallejo"
   displayName: 'Setting GitHub credentials'
+  condition: succeededOrFailed()
 
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
+  condition: succeededOrFailed()
 
 - script: |
     dir
@@ -68,6 +70,7 @@ steps:
     echo git push github $(branchName) 
     git push github $(branchName)
   displayName: 'Setting GitHub account'
+  condition: succeededOrFailed()
 
 
 #    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
