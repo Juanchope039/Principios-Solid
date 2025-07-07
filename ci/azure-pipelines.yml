@@ -31,7 +31,7 @@ steps:
       dir
       git clone https://github.com/Juanchope039/Principios-Solid.git p
       cd p 
-      git checkout -b $(branchName)
+      git checkout -b test
       git pull origin $(branchName)
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Cloning GitHub Repo'
@@ -104,18 +104,17 @@ steps:
       
       echo git status 
       git status
-      echo git branch -D $(branchName)
-      git branch -D $(branchName)
       echo git switch -c  $(branchName)
       git switch -c $(branchName)
       echo git remote -v
       git remote -v
+
+      echo git push github HEAD:$(branchName) 
+      git push github HEAD:$(branchName)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
 
-#    echo git push github HEAD:$(branchName) 
-#    git push github HEAD:$(branchName)
 
 #    echo git -M $(branchName) 
 #    git -M $(branchName) 
