@@ -41,7 +41,7 @@ steps:
 
 #      git config –global core.longpaths true
 #      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-#
+
 - script: |
       echo git pull azure $(branchName)
       git pull azure $(branchName)
