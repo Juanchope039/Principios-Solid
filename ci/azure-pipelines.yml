@@ -65,7 +65,7 @@ steps:
 - task: DeleteFiles@1
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '*/.git'
+    Contents: '*/.git/**'
     RemoveSourceFolder: true
     RemoveDotFiles: true
   condition: succeededOrFailed()
@@ -102,7 +102,7 @@ steps:
     git remote -v
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
-  
+
 #    echo git push github HEAD:$(branchName) 
 #    git push github HEAD:$(branchName)
 
