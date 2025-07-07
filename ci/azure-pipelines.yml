@@ -26,11 +26,14 @@ steps:
 
 - task: CmdLine@2
   inputs:
+    failOnStderr : true 
     script: |
       dir
       cd $(Build.ArtifactStagingDirectory)
       dir
       git clone https://github.com/Juanchope039/Principios-Solid.git p
+      git switch $(branchName)
+      git pull origin $(branchName)
   displayName: 'Cloning GitHub Repo'
 
 - task: CmdLine@2
@@ -58,11 +61,11 @@ steps:
     git commit -am "new Release Of Azure Dev ops to $(branchName)"
     echo git status 
     git status
-    echo git -M $(branchName) 
-    git -M $(branchName) 
+#    echo git -M $(branchName) 
+#    git -M $(branchName) 
 
-    echo git pull origin $(branchName) 
-    git pull origin $(branchName)
+#    echo git pull origin $(branchName) 
+#    git pull origin $(branchName)
   displayName: 'Setting GitHub account'
 
 
