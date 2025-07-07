@@ -86,28 +86,29 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
   condition: succeededOrFailed()
-
-- script: |
-    dir
-    cd $(Build.ArtifactStagingDirectory)/p
-    dir
-
-    echo git add .
-    git add .
-    echo git commit -am "new Release Of Azure Dev ops to $(branchName)"
-    git commit -am "new Release Of Azure Dev ops to $(branchName)"
-    
-    echo git status 
-    git status
-    echo git pull github $(branchName) 
-    git pull github $(branchName)
-
-    echo git status 
-    git status
-    echo git switch -c  $(branchName)
-    git switch -c $(branchName)
-    echo git remote -v
-    git remote -v
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      dir
+      
+      echo git add .
+      git add .
+      echo git commit -am "new Release Of Azure Dev ops to $(branchName)"
+      git commit -am "new Release Of Azure Dev ops to $(branchName)"
+      
+      echo git status 
+      git status
+      echo git pull github $(branchName) 
+      git pull github $(branchName)
+      
+      echo git status 
+      git status
+      echo git switch -c  $(branchName)
+      git switch -c $(branchName)
+      echo git remote -v
+      git remote -v
+    workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
 
