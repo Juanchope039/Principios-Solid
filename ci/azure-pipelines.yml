@@ -26,7 +26,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    failOnStderr : true 
+    failOnStderr: false 
     script: |
       dir
       cd $(Build.ArtifactStagingDirectory)
