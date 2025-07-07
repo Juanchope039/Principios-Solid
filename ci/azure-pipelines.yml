@@ -28,9 +28,9 @@ steps:
   inputs:
     failOnStderr: false 
     script: |
-      dir
+      dir /ash
       cd $(Build.ArtifactStagingDirectory)
-      dir
+      dir /ash
       git clone https://github.com/Juanchope039/Principios-Solid.git p
       cd p 
       git checkout -b $(branchName)
@@ -50,11 +50,12 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      dir
       git config --global user.email "juanchope039@gmail.com"
       git config --global user.name "Juan David Garzón Vallejo"
   displayName: 'Setting GitHub credentials'
   condition: succeededOrFailed()
+
+
 
 - task: CopyFiles@2
   inputs:
@@ -64,9 +65,9 @@ steps:
   condition: succeededOrFailed()
 
 - script: |
-    dir
+    dir /ash
     cd $(Build.ArtifactStagingDirectory)/p
-    dir
+    dir /ash
 
     echo git add .
     git add .
