@@ -50,11 +50,10 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: |      
-      echo cd $(Build.SourcesDirectory)
-      cd $(Build.SourcesDirectory)
+    script: |
       echo dir 
-      dir 
+      dir
+    workingDirectory: '$(Build.SourcesDirectory)'
   displayName: 'test'
   condition: succeededOrFailed()
 
