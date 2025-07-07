@@ -52,8 +52,8 @@ steps:
     cd $(Build.ArtifactStagingDirectory)/p
     dir
 
-    echo git commit --amend
-    git commit --amend
+    echo git add .
+    git add .
     echo git status 
     git status
 #    echo git switch $(branchName) 
