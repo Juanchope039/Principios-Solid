@@ -16,10 +16,8 @@ pool:
   name: Default
 
 steps:
-#- checkout: self
-#  lfs: true
-#  clean: true
-#  persistCredentials: true
+- checkout: self
+  persistCredentials: true
 
 #- script: echo Hello, world!
 #  displayName: 'Run a one-line script'
@@ -52,6 +50,8 @@ steps:
     cd $(Build.ArtifactStagingDirectory)/p
     dir
 
+    echo git commit --amend
+    git commit --amend
     echo git status 
     git status
 #    echo git switch $(branchName) 
