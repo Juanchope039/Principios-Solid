@@ -58,8 +58,11 @@ steps:
       git remote add github https://github.com/Juanchope039/Principios-Solid.git 
       echo git fetch github
       git fetch github
+      echo cd ..
       cd ..
+      echo cd $(Build.SourcesDirectory)
       cd $(Build.SourcesDirectory)
+      echo dir 
       dir 
   displayName: 'Setting GitHub credentials'
   condition: succeededOrFailed()
