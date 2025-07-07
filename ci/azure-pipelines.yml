@@ -67,8 +67,8 @@ steps:
 
     echo git pull origin $(branchName) 
     git pull origin $(branchName)
-    echo git push github $(branchName) 
-    git push github $(branchName)
+    echo git push origin $(branchName) 
+    git push origin $(branchName)
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
 
