@@ -58,15 +58,14 @@ steps:
     git commit -am "new Release Of Azure Dev ops to $(branchName)"
     echo git status 
     git status
+    echo git -M $(branchName) 
+    git -M $(branchName) 
 
-    
-    echo git push origin $(branchName) 
-    git push origin $(branchName)
+    echo git pull origin $(branchName) 
+    git pull origin $(branchName)
   displayName: 'Setting GitHub account'
 
 
-#    echo git switch $(branchName) 
-#    git switch $(branchName) 
 #    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
 #    git remote add github https://github.com/Juanchope039/Principios-Solid.git 
 #    echo git fetch github
