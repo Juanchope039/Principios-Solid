@@ -43,15 +43,12 @@ steps:
   displayName: 'Settings remote Repo'
 
 - script: |
-      dir
-      cd $(Build.ArtifactStagingDirectory)/p
-      dir
-      
       echo git pull azure $(branchName)
       git pull azure $(branchName)
 
       echo git push github $(branchName)
       git push github $(branchName)
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings pull and push Repo'
 
 
