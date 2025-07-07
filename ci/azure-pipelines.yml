@@ -60,7 +60,7 @@ steps:
       echo git fetch github
       git fetch github
   displayName: 'Setting GitHub credentials'
-  condition: failed()
+  condition: succeededOrFailed()
 
 - task: DeleteFiles@1
   inputs:
