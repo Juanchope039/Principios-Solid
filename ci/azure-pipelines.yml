@@ -32,6 +32,7 @@ steps:
       cd $(Build.ArtifactStagingDirectory)
       dir
       git clone https://github.com/Juanchope039/Principios-Solid.git p
+      cd p 
       git switch $(branchName)
       git pull origin $(branchName)
   displayName: 'Cloning GitHub Repo'
