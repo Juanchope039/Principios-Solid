@@ -35,7 +35,7 @@ steps:
       cd p 
       git checkout -b $(branchName)
       git pull origin $(branchName)
-      git rebase --continue
+#      git rebase --continue
   displayName: 'Cloning GitHub Repo'
 
 - task: Bash@3
@@ -56,6 +56,13 @@ steps:
       git config --global user.name "Juan David Garzón Vallejo"
   displayName: 'Setting GitHub credentials'
   condition: succeededOrFailed()
+
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/.git'
+    Contents: '**'
+    RemoveSourceFolder: true
+    RemoveDotFiles: true
 
 - task: CopyFiles@2
   inputs:
