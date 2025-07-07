@@ -66,7 +66,7 @@ steps:
 
       echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
       git remote add github https://github.com/Juanchope039/Principios-Solid.git 
-      
+
       echo git fetch github
       git fetch github
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
@@ -103,11 +103,9 @@ steps:
     git pull github $(branchName)
 
     echo git status 
-    git status    
-    echo git checkout head 
-    git checkout head
-    echo git checkout -b $(branchName)
-    git checkout -b $(branchName)
+    git status
+    echo git switch -c  $(branchName)
+    git switch -c $(branchName)
     echo git remote -v
     git remote -v
   displayName: 'Setting GitHub account'
