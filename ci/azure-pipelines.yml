@@ -28,9 +28,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      ls -al
+      dir /a
       cd $(Build.ArtifactStagingDirectory)
-      ls -al
+      dir /a
       git clone https://github.com/Juanchope039/Principios-Solid.git p
       cd p 
       git checkout -b $(branchName)
@@ -65,9 +65,9 @@ steps:
   condition: succeededOrFailed()
 
 - script: |
-    ls -al
+    dir /a
     cd $(Build.ArtifactStagingDirectory)/p
-    ls -al
+    dir /a
 
     echo git add .
     git add .
