@@ -85,6 +85,9 @@ steps:
 
     echo git pull origin $(branchName) 
     git pull origin $(branchName)
+    echo git status 
+    git status
+    
     echo git push origin $(branchName) 
     git push origin $(branchName)
   displayName: 'Setting GitHub account'
