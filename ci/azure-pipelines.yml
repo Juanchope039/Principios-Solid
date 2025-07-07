@@ -92,9 +92,10 @@ steps:
     
     echo git checkout -b $(branchName)
     git checkout -b $(branchName)
-
-    echo git push origin HEAD:$(branchName) 
-    git push origin HEAD:$(branchName)
+    echo git remote -v
+    git remote -v
+#    echo git push origin HEAD:$(branchName) 
+#    git push origin HEAD:$(branchName)
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
 
