@@ -109,8 +109,8 @@ steps:
       echo git remote -v
       git remote -v
 
-      echo git push github HEAD:$(branchName) 
-      git push github HEAD:$(branchName)
+      echo git push github $(branchName) 
+      git push github $(branchName)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
