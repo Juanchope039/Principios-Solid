@@ -58,6 +58,13 @@ steps:
     git commit -am "new Release Of Azure Dev ops to $(branchName)"
     echo git status 
     git status
+
+    
+    echo git pull origin $(branchName) 
+    git pull origin $(branchName)
+  displayName: 'Setting GitHub account'
+
+
 #    echo git switch $(branchName) 
 #    git switch $(branchName) 
 #    echo git remote add github https://github.com/Juanchope039/Principios-Solid.git 
@@ -68,11 +75,10 @@ steps:
 #    git config advice.diverging true
 #    echo git merge --no-ff github/$(branchName)
 #    git merge --no-ff github/$(branchName)
-#    echo git pull -f github $(branchName) 
-#    git pull -f github $(branchName)
+
+
 #    echo git push -u github $(branchName) 
 #    git push -u github $(branchName)
-  displayName: 'Setting GitHub account'
 
 #- task: GitHubComment@0
 #  inputs:
