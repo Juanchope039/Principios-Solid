@@ -104,6 +104,8 @@ steps:
       
       echo git status 
       git status
+      echo git branc -D $(branchName)
+      git branc -D $(branchName)
       echo git switch -c  $(branchName)
       git switch -c $(branchName)
       echo git remote -v
