@@ -45,11 +45,22 @@ steps:
 - script: |
       echo git pull azure $(branchName)
       git pull azure $(branchName)
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Settings pull Repo'
+
+- script: |
+      echo git config --global
+      
+      git config --global user.email "$(email)"
+      git config --global user.email
+
+      git config --global user.name "$(name)"
+      git config --global user.name
 
       echo git push github $(branchName)
       git push github $(branchName)
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
-  displayName: 'Settings pull and push Repo'
+  displayName: 'Settings push Repo'
 
 
 
