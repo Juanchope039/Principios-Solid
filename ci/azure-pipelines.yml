@@ -62,11 +62,9 @@ steps:
     git commit -am "new Release Of Azure Dev ops to $(branchName)"
     echo git status 
     git status
-#    echo git -M $(branchName) 
-#    git -M $(branchName) 
 
-#    echo git pull origin $(branchName) 
-#    git pull origin $(branchName)
+    echo git pull origin $(branchName) 
+    git pull origin $(branchName)
   displayName: 'Setting GitHub account'
 
 
@@ -80,6 +78,8 @@ steps:
 #    git merge --no-ff github/$(branchName)
 
 
+#    echo git -M $(branchName) 
+#    git -M $(branchName) 
 #    echo git push -u github $(branchName) 
 #    git push -u github $(branchName)
 
