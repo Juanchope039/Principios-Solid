@@ -16,11 +16,22 @@ pool:
   name: Default
 
 steps:
-- checkout: self
-  lfs: true
-  clean: false
+- checkout: none
+  clean: true
   persistCredentials: true
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      git switch azurePipelines
+
+#      echo git remote add github $(repoGitHub) 
+#      git remote add github $(repoGitHub)
+
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Cloning GitHub Repo'
+#$(Build.ArtifactStagingDirectory) / $(Build.SourcesDirectory)
 #- task: Bash@3
 #  inputs:
 #    targetType: 'inline'
