@@ -52,11 +52,12 @@ steps:
       echo git config --global
       
       git config --global user.email "$(email)"
-      git config --global user.email
-
       git config --global user.name "$(name)"
-      git config --global user.name
+      git config --global http.extraheader "AUTHORIZATION: bearer $(gitHubPath)"
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'CVonfigure Tokens'
 
+- script: |
       echo git push github $(branchName)
       git push github $(branchName)
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
