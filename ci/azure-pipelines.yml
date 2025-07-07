@@ -64,8 +64,8 @@ steps:
 
 - task: DeleteFiles@1
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '*/.git/**'
+    SourceFolder: '$(Build.SourcesDirectory)/.git/'
+    Contents: '**'
     RemoveSourceFolder: true
     RemoveDotFiles: true
   condition: succeededOrFailed()
