@@ -24,13 +24,13 @@ steps:
 #- script: echo Hello, world!
 #  displayName: 'Run a one-line script'
 
-- task: CmdLine@2
+- task: Bash@3
   inputs:
-    failOnStderr: false 
+    targetType: 'inline'
     script: |
-      dir /ash
+      ls -al
       cd $(Build.ArtifactStagingDirectory)
-      dir /ash
+      ls -al
       git clone https://github.com/Juanchope039/Principios-Solid.git p
       cd p 
       git checkout -b $(branchName)
@@ -38,8 +38,9 @@ steps:
       git rebase --continue
   displayName: 'Cloning GitHub Repo'
 
-- task: CmdLine@2
+- task: Bash@3
   inputs:
+    targetType: 'inline'
     script: |
       cd $(Build.ArtifactStagingDirectory)/p
       git rebase develop
@@ -47,15 +48,14 @@ steps:
   displayName: 'rebase develop'
   condition: Failed()
 
-- task: CmdLine@2
+- task: Bash@3
   inputs:
+    targetType: 'inline'
     script: |
       git config --global user.email "juanchope039@gmail.com"
       git config --global user.name "Juan David Garzón Vallejo"
   displayName: 'Setting GitHub credentials'
   condition: succeededOrFailed()
-
-
 
 - task: CopyFiles@2
   inputs:
@@ -65,9 +65,9 @@ steps:
   condition: succeededOrFailed()
 
 - script: |
-    dir /ash
+    ls -al
     cd $(Build.ArtifactStagingDirectory)/p
-    dir /ash
+    ls -al
 
     echo git add .
     git add .
