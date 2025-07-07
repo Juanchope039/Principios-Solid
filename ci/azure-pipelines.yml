@@ -42,19 +42,17 @@ steps:
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings remote Repo'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      
+- script: |
+      cd $(Build.ArtifactStagingDirectory)/p
+
+      echo git pull azure $(branchName)
+      git pull azure $(branchName)
+
       echo git push github $(branchName)
       git push github $(branchName)
-    workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings pull and push Repo'
 
 
-#      echo git pull azure $(branchName)
-#      git pull azure $(branchName)
 
 #$(Build.ArtifactStagingDirectory) / $(Build.SourcesDirectory)
 #- task: Bash@3
