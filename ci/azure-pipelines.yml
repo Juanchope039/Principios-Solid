@@ -33,9 +33,18 @@ steps:
       dir
       git clone https://github.com/Juanchope039/Principios-Solid.git p
       cd p 
-      git switch $(branchName)
+      git checkout -b $(branchName)
       git pull origin $(branchName)
   displayName: 'Cloning GitHub Repo'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      cd $(Build.ArtifactStagingDirectory)/p
+      git rebase develop
+      git pull origin $(branchName)
+  displayName: 'rebase develop'
+  condition: Failed()
 
 - task: CmdLine@2
   inputs:
