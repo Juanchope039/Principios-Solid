@@ -34,6 +34,9 @@ steps:
     script: |
       git switch azurePipelines
 
+      git config –global core.longpaths true
+      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+
       echo git remote add github $(repoGitHub) 
       git remote add github $(repoGitHub)
 
