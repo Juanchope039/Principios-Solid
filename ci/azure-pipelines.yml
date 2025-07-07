@@ -37,10 +37,7 @@ steps:
       git config –global core.longpaths true
       git config --global --add url."git@github.com:".insteadOf "https://github.com/"
 
-      echo git remote add github $(repoGitHub) 
-      git remote add github $(repoGitHub)
-
-      echo git remote add azure $(repoAzure) 
+      git remote add github $(remoteGitHub)
       git remote add azure $(repoAzure)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings remote Repo'
