@@ -35,7 +35,6 @@ steps:
       cd p 
       git checkout -b $(branchName)
       git pull origin $(branchName)
-#      git rebase --continue
   displayName: 'Cloning GitHub Repo'
 
 - task: Bash@3
@@ -59,7 +58,8 @@ steps:
       git remote add github https://github.com/Juanchope039/Principios-Solid.git 
       echo git fetch github
       git fetch github
-      dir $(Build.SourcesDirectory)
+      cd $(Build.SourcesDirectory)
+      dir 
   displayName: 'Setting GitHub credentials'
   condition: succeededOrFailed()
 
