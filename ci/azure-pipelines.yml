@@ -90,12 +90,6 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
   condition: succeededOrFailed()
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/p'
-  condition: succeededOrFailed()
 
 - task: Bash@3
   inputs:
@@ -117,8 +111,7 @@ steps:
       git status
       echo git switch -c  $(branchName)
       git switch -c $(branchName)
-      echo git remote -v
-      git remote -v
+
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Setting GitHub account'
   condition: succeededOrFailed()
@@ -127,18 +120,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git request-pull -p $(branchName) $(repoGitHub) $(repoAzure)
+      git request-pull -p $(branchName) $(repoAzure)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Generate Pull Request'
   condition: succeededOrFailed()
-#echo git push github $(branchName) 
-#      git push github $(branchName)
-
-#    echo git -M $(branchName) 
-#    git -M $(branchName) 
-
-#- task: GitHubComment@0
-#  inputs:
-#    gitHubConnection: 'GitHub principios Solid'
-#    repositoryName: 'Juanchope039/Principios-Solid'
-#    comment: 'se genera una nueva contribución atraves de azure'
