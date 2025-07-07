@@ -48,11 +48,18 @@ steps:
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings pull Repo'
 
-
+- script: |
+      echo git config --global
+      
+      git config --global user.email "$(email)"
+      git config --global user.name "$(name)"
+      git config --global http.extraheader "AUTHORIZATION: bearer $(gitHubPath)"
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Configure Tokens'
 
 - script: |
-      echo git push origin $(branchName)
-      git push origin $(branchName)
+      echo git push github $(branchName)
+      git push github $(branchName)
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings push Repo'
 
