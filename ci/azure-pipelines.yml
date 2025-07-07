@@ -65,6 +65,8 @@ steps:
 
     echo git pull origin $(branchName) 
     git pull origin $(branchName)
+    echo git push github $(branchName) 
+    git push github $(branchName)
   displayName: 'Setting GitHub account'
 
 
@@ -80,8 +82,6 @@ steps:
 
 #    echo git -M $(branchName) 
 #    git -M $(branchName) 
-#    echo git push -u github $(branchName) 
-#    git push -u github $(branchName)
 
 #- task: GitHubComment@0
 #  inputs:
