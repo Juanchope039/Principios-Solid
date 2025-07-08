@@ -35,7 +35,7 @@ steps:
     script: |
       git switch azurePipelines
 
-      git remote add github $(repoGitHub)
+      git remote add github $(remoteGitHub)
       git remote add azure $(repoAzure)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings remote Repo'
