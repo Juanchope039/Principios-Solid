@@ -1,15 +1,10 @@
-trigger:
-- main
-- azurePipelines
-
-pr:
-- develop
-- quality
-
 pool:
   vmImage: ubuntu-latest
   Image: ubuntu-latest
 #  name: Default
+
+variables:
+- group: general-variable-Pipelines
 
 steps:
 - checkout: none
@@ -34,10 +29,6 @@ steps:
       git remote add azure $(repoAzure)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings remote Repo'
-
-#      git config –global core.longpaths true
-#      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-###########
 
 - script: |
       echo git pull azure $(branchName)
