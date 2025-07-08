@@ -13,6 +13,7 @@ pr:
 
 pool:
   vmImage: ubuntu-latest
+  Image: ubuntu-latest
 #  name: Default
 
 steps:
