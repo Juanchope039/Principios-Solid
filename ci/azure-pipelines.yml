@@ -23,7 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git switch azurePipelines
+      git switch $(branchName)
 
       git remote add github $(remoteGitHub)
       git remote add azure $(repoAzure)
