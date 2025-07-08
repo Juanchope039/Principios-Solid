@@ -40,7 +40,7 @@ steps:
       git config --global credential.https://github.com.$(userNameGitHub)
       git config --global credential.https://github.com.$(gitHubPath)
 
-      git remote add github $(remoteGitHub)
+      git remote add github $(repoGitHub)
       git remote add azure $(repoAzure)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings remote Repo'
