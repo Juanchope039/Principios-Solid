@@ -37,11 +37,11 @@ steps:
       git config --global user.name "$(name)"
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Configure Tokens azure'
+#      echo git config pull.rebase false
+#      git config pull.rebase false
+
 
 - script: |
-      echo git config pull.rebase false
-      git config pull.rebase false
-
       echo git pull azure $(branchName)
       git pull azure $(branchName)
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
