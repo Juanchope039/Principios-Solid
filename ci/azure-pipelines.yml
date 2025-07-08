@@ -63,6 +63,23 @@ steps:
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Configure Tokens'
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      #!/bin/bash
+              set -x
+              git config --global credential.helper 'cache --timeout 600'
+              << eof tr -d ' ' | git credential-cache store
+                protocol=https
+                host=github.com
+                username=nobody
+                password=${GITHUB_TOKEN}
+              eof
+    workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+    bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
+    displayName: 'Cache GitHub credentials.'
+
 - script: |
       echo git push github HEAD:$(branchName)
       git push github HEAD:$(branchName)
