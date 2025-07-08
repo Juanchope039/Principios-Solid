@@ -31,6 +31,14 @@ steps:
   displayName: 'Settings remote Repo'
 
 - script: |
+      echo git config --global
+      
+      git config --global user.email "$(emailAzure)"
+      git config --global user.name "$(name)"
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Configure Tokens azure'
+
+- script: |
       echo git config pull.rebase false
       git config pull.rebase false
 
