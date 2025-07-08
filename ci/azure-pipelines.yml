@@ -30,16 +30,9 @@ steps:
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings remote Repo'
 
-- script: |
-      echo git config --global
-      
-      git config --global user.email "$(emailAzure)"
-      git config --global user.name "$(name)"
-  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
-  displayName: 'Configure Tokens azure'
-#      echo git config pull.rebase false
-#      git config pull.rebase false
-
+#      git config –global core.longpaths true
+#      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+###########
 
 - script: |
       echo git pull azure $(branchName)
