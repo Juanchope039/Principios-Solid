@@ -23,6 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      git fetch
       git switch azurePipelines
 
       git remote add github $(remoteGitHub)
