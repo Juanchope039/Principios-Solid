@@ -5,45 +5,78 @@
 
 trigger:
 - main
-- develop
-- quality
+- azurePipelines
 
 pr:
-- main
 - develop
 - quality
-- azurePipelines
 
 pool:
   vmImage: ubuntu-latest
-  name: Default
+  Image: ubuntu-latest
+#  name: Default
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: none
+  clean: true
+  persistCredentials: true
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      git clone $(repoGitHub) p
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Cloning GitHub Repo'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      git switch azurePipelines
+
+      git remote add github $(remoteGitHub)
+      git remote add azure $(repoAzure)
+    workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Settings remote Repo'
+
+#      git config –global core.longpaths true
+#      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+###########
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-- task: CmdLine@2
-  inputs:
-    script: git status
-  displayName: 'Setting GitHub account'
+      echo git pull azure $(branchName)
+      git pull azure $(branchName)
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Settings pull Repo'
 
 - script: |
-    git status
-    git checkout head
-    git remote -v
-    git remote add github https://github.com/Juanchope039/Principios-Solid.git
-    echo git push origin $(Build.SourceBranch)
-    echo $(Build.SourceBranch)
-  displayName: 'Setting GitHub account'
+      echo git config --global
+      
+      git config --global user.email "$(email)"
+      git config --global user.name "$(name)"
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Configure Tokens'
 
-- task: GitHubComment@0
+- task: Bash@3
   inputs:
-    gitHubConnection: 'GitHub principios Solid'
-    repositoryName: 'Juanchope039/Principios-Solid'
-    comment: 'se genera una nueva contribución atraves de azure'
+    targetType: 'inline'
+    script: |
+      #!/bin/bash
+              set -x
+              git config --global credential.helper 'cache --timeout 600'
+              << eof tr -d ' ' | git credential-cache store
+                protocol=https
+                host=github.com
+                username=$(userNameGitHub)
+                password=${GITHUB_TOKEN}
+              eof
+    workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+    bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
+    displayName: 'Cache GitHub credentials.'
 
+- script: |
+      echo git push github $(branchName)
+      git push github $(branchName)
+  workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+  displayName: 'Settings push Repo'
