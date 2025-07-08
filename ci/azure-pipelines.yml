@@ -35,11 +35,6 @@ steps:
     script: |
       git switch azurePipelines
 
-      git config --global --unset-all credential.helper
-      git config --global credential.helper store
-      git config --global credential.https://github.com.$(userNameGitHub)
-      git config --global credential.https://github.com.$(gitHubPath)
-
       git remote add github $(repoGitHub)
       git remote add azure $(repoAzure)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
@@ -59,7 +54,6 @@ steps:
       
       git config --global user.email "$(email)"
       git config --global user.name "$(name)"
-      git config --global http.extraheader "AUTHORIZATION: bearer $(gitHubPath)"
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Configure Tokens'
 
@@ -73,7 +67,7 @@ steps:
               << eof tr -d ' ' | git credential-cache store
                 protocol=https
                 host=github.com
-                username=nobody
+                username=$(userNameGitHub)
                 password=${GITHUB_TOKEN}
               eof
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
