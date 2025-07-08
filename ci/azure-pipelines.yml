@@ -81,7 +81,7 @@ steps:
     displayName: 'Cache GitHub credentials.'
 
 - script: |
-      echo git push github HEAD:$(branchName)
-      git push github HEAD:$(branchName)
+      echo git push github $(branchName)
+      git push github $(branchName)
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
   displayName: 'Settings push Repo'
