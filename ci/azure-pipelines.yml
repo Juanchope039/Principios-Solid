@@ -31,6 +31,9 @@ steps:
   displayName: 'Settings remote Repo'
 
 - script: |
+      echo git config pull.rebase false
+      git config pull.rebase false
+
       echo git pull azure $(branchName)
       git pull azure $(branchName)
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
