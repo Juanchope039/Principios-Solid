@@ -1,15 +1,10 @@
-trigger:
-- main
-- azurePipelines
-
-pr:
-- develop
-- quality
-
 pool:
   vmImage: ubuntu-latest
   Image: ubuntu-latest
 #  name: Default
+
+variables:
+- group: general-variable-Pipelines
 
 steps:
 - checkout: none
