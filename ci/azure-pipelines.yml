@@ -76,8 +76,6 @@ steps:
     displayName: 'Cache GitHub credentials.'
 
 - script: |
-      git config --global user.email 
-      git config --global user.name 
       echo git push github $(branchName)
       git push github $(branchName)
   workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
