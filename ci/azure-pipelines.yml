@@ -3,6 +3,9 @@ pool:
   Image: ubuntu-latest
 #  name: Default
 
+variables:
+- group: general-variable-Pipelines
+
 steps:
 - checkout: none
   clean: true
