@@ -35,6 +35,11 @@ steps:
     script: |
       git switch azurePipelines
 
+      git config --global --unset-all credential.helper
+      git config --global credential.helper store
+      git config --global credential.https://github.com.$(userNameGitHub)
+      git config --global credential.https://github.com.$(gitHubPath)
+
       git remote add github $(remoteGitHub)
       git remote add azure $(repoAzure)
     workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
