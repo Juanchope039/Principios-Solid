@@ -20,7 +20,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                'echo ''Hello world'''
+                echo Hello world
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
 
