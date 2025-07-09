@@ -46,6 +46,8 @@ stages:
       - job: BuidTest
         dependsOn: CloneRepo
         displayName: Build Test
+        workspace:
+          clean: resources
         steps:
           - task: Bash@3
             inputs:
