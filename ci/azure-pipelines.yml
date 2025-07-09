@@ -44,6 +44,7 @@ stages:
             displayName: 'Settings pull Repo'
 
       - job: BuidTest
+        dependsOn: CloneRepo
         displayName: Build Test
         steps:
           - task: Bash@3
