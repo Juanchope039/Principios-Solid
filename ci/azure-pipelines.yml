@@ -12,6 +12,8 @@ stages:
     jobs:
       - job: BuidTest
         displayName: Build Test
+        workspace:
+          clean: all
         steps:
           - checkout: self
           - task: Bash@3
@@ -30,6 +32,8 @@ stages:
     jobs:
       - job: CloneRepo
         displayName: Clone repo
+        workspace:
+          clean: all
         steps:
           - checkout: none
             clean: false
@@ -39,7 +43,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                git clone $(repoGitHub) p
+                git clone $(repoGitHub)
               workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Cloning GitHub Repo'
 
@@ -51,7 +55,7 @@ stages:
 
                 git remote add github $(remoteGitHub)
                 git remote add azure $(repoAzure)
-              workingDirectory: '$(Build.BinariesDirectory)/p'
+              workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Settings remote Repo'
 
           - script: |
@@ -59,7 +63,7 @@ stages:
                 git pull azure $(branchName)
                 git status
                 dir
-            workingDirectory: '$(Build.BinariesDirectory)/p'
+            workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Settings pull Repo'
           
           - task: Bash@3
@@ -73,7 +77,7 @@ stages:
 
                 git status
                 dir
-              workingDirectory: '$(Build.BinariesDirectory)/p'
+              workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Configure Tokens'
 
           - task: Bash@3
@@ -90,7 +94,7 @@ stages:
                           password=${GITHUB_TOKEN}
                         eof
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
-              workingDirectory: '$(Build.BinariesDirectory)/p'
+              workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Cache GitHub credentials.'
 
           - script: |
@@ -98,5 +102,5 @@ stages:
                 dir
                 echo git push github $(branchName)
                 git push github $(branchName)
-            workingDirectory: '$(Build.BinariesDirectory)/p'
+            workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Settings push Repo'
