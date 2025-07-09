@@ -37,10 +37,11 @@ stages:
                 dir
                 java -version
                 javac -version
-                javac ./src/main/java/com/juanchope039/calculadora/App.java
+                dir ./src/main/java/com/juanchope039/calculadora/
                 java -cp ./src/main/java/ ./src/main/java/com/juanchope039/calculadora/App.java
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
+#                javac ./src/main/java/com/juanchope039/calculadora/App.java
 
   - stage: Push
     displayName: Push
