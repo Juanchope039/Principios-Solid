@@ -66,13 +66,19 @@ stages:
           - task: PublishPipelineArtifact@1
             inputs:
               artifactName: workingSpace
-              targetPath: '$(Build.BinariesDirectory)/p'
+              targetPath: '$(Build.BinariesDirectory)'
 
       - job: PushGitHub
         displayName: Push Git Hub
         dependsOn: CloneRepo
         steps:
           - checkout: none #skip checking out the default repository resource
+
+          - script: |
+                git status
+                dir
+            workingDirectory: '$(Build.SourcesDirectory)'
+            displayName: 'test'
           - task: DownloadPipelineArtifact@2
             displayName: 'Download Pipeline Artifact'
             inputs:
@@ -90,7 +96,7 @@ stages:
 
                 git status
                 dir
-              workingDirectory: '$(Build.SourcesDirectory)'
+              workingDirectory: '$(Build.SourcesDirectory)/p'
             displayName: 'Configure Tokens'
 
           - task: Bash@3
@@ -107,7 +113,7 @@ stages:
                           password=${GITHUB_TOKEN}
                         eof
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
-              workingDirectory: '$(Build.SourcesDirectory)'
+              workingDirectory: '$(Build.SourcesDirectory)/p'
             displayName: 'Cache GitHub credentials.'
 
           - script: |
@@ -115,5 +121,5 @@ stages:
                 dir
                 echo git push github $(branchName)
                 git push github $(branchName)
-            workingDirectory: '$(Build.SourcesDirectory)'
+            workingDirectory: '$(Build.SourcesDirectory)/p'
             displayName: 'Settings push Repo'
