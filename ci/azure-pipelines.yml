@@ -25,7 +25,7 @@ stages:
                 git clone $(repoGitHub) p
               workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Cloning GitHub Repo'
-#Build.BinariesDirectory   -  Build.ArtifactStagingDirectory
+#           Build.BinariesDirectory   -  Build.ArtifactStagingDirectory
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -42,6 +42,10 @@ stages:
                 git pull azure $(branchName)
             workingDirectory: '$(Build.BinariesDirectory)/p'
             displayName: 'Settings pull Repo'
+          - task: PublishPipelineArtifact@1
+            inputs:
+              artifactName: workingSpace
+              targetPath: '$(Build.BinariesDirectory)/p'
 
       - job: BuidTest
         dependsOn: CloneRepo
@@ -49,11 +53,17 @@ stages:
         workspace:
           clean: resources
         steps:
+          - checkout: none #skip checking out the default repository resource
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Pipeline Artifact'
+            inputs:
+              artifactName: workingSpace
+              targetPath: '$(Pipeline.Workspace)'
           - task: Bash@3
             inputs:
               targetType: 'inline'
               script: 'echo ''Hello world'''
-              workingDirectory: '$(Build.BinariesDirectory)/p'
+              workingDirectory: '$(Pipeline.Workspace)'
 
   - stage: Push
     displayName: Push
