@@ -21,8 +21,6 @@ stages:
               targetType: 'inline'
               script: |
                 'echo ''Hello world'''
-                git status
-                dir
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
 
@@ -44,29 +42,19 @@ stages:
               targetType: 'inline'
               script: |
                 git clone $(repoGitHub) $(Build.BinariesDirectory)
-                dir
-              workingDirectory: '$(Pipeline.Workspace)'
-            displayName: 'Cloning GitHub Repo'
 
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: |
                 git switch $(branchName)
 
                 git remote add github $(remoteGitHub)
                 git remote add azure $(repoAzure)
-              workingDirectory: '$(Build.BinariesDirectory)'
-            displayName: 'Settings remote Repo'
+              workingDirectory: '$(Pipeline.Workspace)'
+            displayName: 'Cloning GitHub Repo'
 
           - script: |
-                echo git pull azure $(branchName)
                 git pull azure $(branchName)
-                git status
-                dir
             workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Settings pull Repo'
-          
+
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -75,16 +63,6 @@ stages:
                 
                 git config --global user.email "$(email)"
                 git config --global user.name "$(name)"
-
-                git status
-                dir
-              workingDirectory: '$(Build.BinariesDirectory)'
-            displayName: 'Configure Tokens'
-
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: |
                 #!/bin/bash
                         set -x
                         git config --global credential.helper 'cache --timeout 600'
@@ -99,8 +77,6 @@ stages:
             displayName: 'Cache GitHub credentials.'
 
           - script: |
-                git status
-                dir
                 echo git push github $(branchName)
                 git push github $(branchName)
             workingDirectory: '$(Build.BinariesDirectory)'
