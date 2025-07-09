@@ -15,7 +15,7 @@ stages:
         displayName: Clone repo
         steps:
           - checkout: none
-            clean: true
+            clean: false
             persistCredentials: true
 
           - task: Bash@3
@@ -57,6 +57,7 @@ stages:
 
   - stage: Push
     displayName: Push
+    dependsOn: Build 
     jobs:
       - job: PushGitHub
         displayName: Push Git Hub
