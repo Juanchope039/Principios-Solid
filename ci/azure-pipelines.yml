@@ -29,6 +29,20 @@ stages:
           clean: all
         steps:
           - checkout: self
+
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                cd src
+                cd main
+                cd java
+                cd com
+                cd juanchope039
+                cd calculadora
+              workingDirectory: '$(Build.SourcesDirectory)'
+            displayName: Directory test
+
           - task: Bash@3
             inputs:
               targetType: 'inline'
