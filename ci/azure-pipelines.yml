@@ -64,6 +64,7 @@ stages:
               targetType: 'inline'
               script: 'echo ''Hello world'''
               workingDirectory: '$(Pipeline.Workspace)'
+            displayName: Hello world!
           
 #########################################################################
 
@@ -110,8 +111,8 @@ stages:
                           username=$(userNameGitHub)
                           password=${GITHUB_TOKEN}
                         eof
-              workingDirectory: '$(Pipeline.Workspace)'
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
+              workingDirectory: '$(Pipeline.Workspace)'
             displayName: 'Cache GitHub credentials.'
 
           - script: |
