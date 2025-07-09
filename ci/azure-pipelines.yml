@@ -40,6 +40,7 @@ stages:
           - script: |
                 echo git pull azure $(branchName)
                 git pull azure $(branchName)
+                dir
             workingDirectory: '$(Build.BinariesDirectory)/p'
             displayName: 'Settings pull Repo'
           - task: PublishPipelineArtifact@1
@@ -62,7 +63,9 @@ stages:
           - task: Bash@3
             inputs:
               targetType: 'inline'
-              script: 'echo ''Hello world'''
+              script: |
+                'echo ''Hello world'''
+                dir
               workingDirectory: '$(Pipeline.Workspace)'
             displayName: Hello world!
           
@@ -116,6 +119,7 @@ stages:
             displayName: 'Cache GitHub credentials.'
 
           - script: |
+                dir
                 echo git push github $(branchName)
                 git push github $(branchName)
             workingDirectory: '$(Pipeline.Workspace)'
