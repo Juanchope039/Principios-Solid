@@ -11,8 +11,8 @@ stages:
   - stage: Build
     displayName: Build
     jobs:
-      - job: Build
-        displayName: Build Test
+      - job: CloneRepo
+        displayName: Clone repo
         steps:
           - checkout: none
             clean: true
@@ -37,16 +37,27 @@ stages:
               workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
             displayName: 'Settings remote Repo'
 
-          #      git config –global core.longpaths true
-          #      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-          ###########
-
           - script: |
                 echo git pull azure $(branchName)
                 git pull azure $(branchName)
             workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
             displayName: 'Settings pull Repo'
 
+      - job: BuidTest
+        displayName: Build Test
+        steps:
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: 'echo ''Hello world'''
+              workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+              
+  - stage: Push
+    displayName: Push
+    jobs:
+      - job: PushGitHub
+        displayName: Push Git Hub
+        steps:
           - script: |
                 echo git config --global
                 
