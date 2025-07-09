@@ -10,6 +10,24 @@ stages:
   - stage: Build
     displayName: Build
     jobs:
+      - job: Buid
+        displayName: Build Test
+        workspace:
+          clean: all
+        steps:
+          - checkout: self
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo Hello world
+              workingDirectory: '$(Build.SourcesDirectory)'
+            displayName: Hello world!
+
+  - stage: Test
+    displayName: BuildTest
+    dependsOn: Build
+    jobs:
       - job: BuidTest
         displayName: Build Test
         workspace:
@@ -21,6 +39,8 @@ stages:
               targetType: 'inline'
               script: |
                 echo Hello world
+                dir
+                java -cp ./src/main/java/ ./src/main/java/com/juanchope039/calculadora/App.java
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
 
