@@ -25,7 +25,7 @@ stages:
                 git clone $(repoGitHub) p
               workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Cloning GitHub Repo'
-#           Build.BinariesDirectory   -  Build.ArtifactStagingDirectory
+
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -70,7 +70,7 @@ stages:
 
           - task: PublishPipelineArtifact@1
             inputs:
-              artifactName: workingSpace
+              artifactName: workingSpace2
               targetPath: '$(Pipeline.Workspace)'
 
   - stage: Push
@@ -84,7 +84,7 @@ stages:
           - task: DownloadPipelineArtifact@2
             displayName: 'Download Pipeline Artifact'
             inputs:
-              artifactName: workingSpace
+              artifactName: workingSpace2
               targetPath: '$(Pipeline.Workspace)'
           
           - task: Bash@3
