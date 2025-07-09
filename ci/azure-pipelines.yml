@@ -64,6 +64,13 @@ stages:
               targetType: 'inline'
               script: 'echo ''Hello world'''
               workingDirectory: '$(Pipeline.Workspace)'
+          
+#########################################################################
+
+          - task: PublishPipelineArtifact@1
+            inputs:
+              artifactName: workingSpace
+              targetPath: '$(Pipeline.Workspace)'
 
   - stage: Push
     displayName: Push
@@ -72,13 +79,23 @@ stages:
       - job: PushGitHub
         displayName: Push Git Hub
         steps:
-          - script: |
+          - checkout: none #skip checking out the default repository resource
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Pipeline Artifact'
+            inputs:
+              artifactName: workingSpace
+              targetPath: '$(Pipeline.Workspace)'
+          
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
                 echo git config --global
                 
                 git config --global user.email "$(email)"
                 git config --global user.name "$(name)"
-            workingDirectory: '$(Build.BinariesDirectory)/p'
-            displayName: 'Configure Tokens'
+              workingDirectory: '$(Pipeline.Workspace)'
+              displayName: 'Configure Tokens'
 
           - task: Bash@3
             inputs:
@@ -93,12 +110,12 @@ stages:
                           username=$(userNameGitHub)
                           password=${GITHUB_TOKEN}
                         eof
-              workingDirectory: '$(Build.BinariesDirectory)/p'
+              workingDirectory: '$(Pipeline.Workspace)'
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
               displayName: 'Cache GitHub credentials.'
 
           - script: |
                 echo git push github $(branchName)
                 git push github $(branchName)
-            workingDirectory: '$(Build.BinariesDirectory)/p'
+            workingDirectory: '$(Pipeline.Workspace)'
             displayName: 'Settings push Repo'
