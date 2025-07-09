@@ -23,9 +23,9 @@ stages:
               targetType: 'inline'
               script: |
                 git clone $(repoGitHub) p
-              workingDirectory: '$(Build.ArtifactStagingDirectory)'
+              workingDirectory: '$(Build.BinariesDirectory)'
             displayName: 'Cloning GitHub Repo'
-
+#Build.BinariesDirectory   -  Build.ArtifactStagingDirectory
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -34,13 +34,13 @@ stages:
 
                 git remote add github $(remoteGitHub)
                 git remote add azure $(repoAzure)
-              workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+              workingDirectory: '$(Build.BinariesDirectory)/p'
             displayName: 'Settings remote Repo'
 
           - script: |
                 echo git pull azure $(branchName)
                 git pull azure $(branchName)
-            workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+            workingDirectory: '$(Build.BinariesDirectory)/p'
             displayName: 'Settings pull Repo'
 
       - job: BuidTest
@@ -50,8 +50,8 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'echo ''Hello world'''
-              workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
-              
+              workingDirectory: '$(Build.BinariesDirectory)/p'
+
   - stage: Push
     displayName: Push
     jobs:
@@ -63,7 +63,7 @@ stages:
                 
                 git config --global user.email "$(email)"
                 git config --global user.name "$(name)"
-            workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+            workingDirectory: '$(Build.BinariesDirectory)/p'
             displayName: 'Configure Tokens'
 
           - task: Bash@3
@@ -79,12 +79,12 @@ stages:
                           username=$(userNameGitHub)
                           password=${GITHUB_TOKEN}
                         eof
-              workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+              workingDirectory: '$(Build.BinariesDirectory)/p'
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
               displayName: 'Cache GitHub credentials.'
 
           - script: |
                 echo git push github $(branchName)
                 git push github $(branchName)
-            workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
+            workingDirectory: '$(Build.BinariesDirectory)/p'
             displayName: 'Settings push Repo'
