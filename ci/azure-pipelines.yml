@@ -59,14 +59,14 @@ stages:
             displayName: 'Download Pipeline Artifact'
             inputs:
               artifactName: workingSpace
-              targetPath: '$(Pipeline.Workspace)'
+              targetPath: '$(Build.SourcesDirectory)'
           - task: Bash@3
             inputs:
               targetType: 'inline'
               script: |
                 'echo ''Hello world'''
                 dir
-              workingDirectory: '$(Pipeline.Workspace)'
+              workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
           
 #########################################################################
@@ -74,7 +74,7 @@ stages:
           - task: PublishPipelineArtifact@1
             inputs:
               artifactName: workingSpace2
-              targetPath: '$(Pipeline.Workspace)'
+              targetPath: '$(Build.SourcesDirectory)'
 
   - stage: Push
     displayName: Push
@@ -88,7 +88,7 @@ stages:
             displayName: 'Download Pipeline Artifact'
             inputs:
               artifactName: workingSpace2
-              targetPath: '$(Pipeline.Workspace)'
+              targetPath: '$(Build.SourcesDirectory)'
           
           - task: Bash@3
             inputs:
@@ -98,7 +98,7 @@ stages:
                 
                 git config --global user.email "$(email)"
                 git config --global user.name "$(name)"
-              workingDirectory: '$(Pipeline.Workspace)'
+              workingDirectory: '$(Build.SourcesDirectory)'
             displayName: 'Configure Tokens'
 
           - task: Bash@3
@@ -115,12 +115,12 @@ stages:
                           password=${GITHUB_TOKEN}
                         eof
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
-              workingDirectory: '$(Pipeline.Workspace)'
+              workingDirectory: '$(Build.SourcesDirectory)'
             displayName: 'Cache GitHub credentials.'
 
           - script: |
                 dir
                 echo git push github $(branchName)
                 git push github $(branchName)
-            workingDirectory: '$(Pipeline.Workspace)'
+            workingDirectory: '$(Build.SourcesDirectory)'
             displayName: 'Settings push Repo'
