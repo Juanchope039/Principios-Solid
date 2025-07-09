@@ -6,10 +6,29 @@
 variables:
 - group: general-variable-Pipelines
 
-
 stages:
   - stage: Build
     displayName: Build
+    jobs:
+      - job: BuidTest
+        displayName: Build Test
+        workspace:
+          clean: resources
+        steps:
+          - checkout: none #skip checking out the default repository resource
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                'echo ''Hello world'''
+                git status
+                dir
+              workingDirectory: '$(Build.SourcesDirectory)'
+            displayName: Hello world!
+
+  - stage: Push
+    displayName: Push
+    dependsOn: Build 
     jobs:
       - job: CloneRepo
         displayName: Clone repo
@@ -49,47 +68,15 @@ stages:
               artifactName: workingSpace
               targetPath: '$(Build.BinariesDirectory)/p'
 
-      - job: BuidTest
+      - job: PushGitHub
+        displayName: Push Git Hub
         dependsOn: CloneRepo
-        displayName: Build Test
-        workspace:
-          clean: resources
         steps:
           - checkout: none #skip checking out the default repository resource
           - task: DownloadPipelineArtifact@2
             displayName: 'Download Pipeline Artifact'
             inputs:
               artifactName: workingSpace
-              targetPath: '$(Build.SourcesDirectory)'
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: |
-                'echo ''Hello world'''
-                git status
-                dir
-              workingDirectory: '$(Build.SourcesDirectory)'
-            displayName: Hello world!
-          
-#########################################################################
-
-          - task: PublishPipelineArtifact@1
-            inputs:
-              artifactName: workingSpace2
-              targetPath: '$(Build.SourcesDirectory)'
-
-  - stage: Push
-    displayName: Push
-    dependsOn: Build 
-    jobs:
-      - job: PushGitHub
-        displayName: Push Git Hub
-        steps:
-          - checkout: none #skip checking out the default repository resource
-          - task: DownloadPipelineArtifact@2
-            displayName: 'Download Pipeline Artifact'
-            inputs:
-              artifactName: workingSpace2
               targetPath: '$(Build.SourcesDirectory)'
           
           - task: Bash@3
