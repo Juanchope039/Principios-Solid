@@ -42,13 +42,16 @@ stages:
               targetType: 'inline'
               script: |
                 git clone $(repoGitHub) $(Build.BinariesDirectory)
+              workingDirectory: '$(Pipeline.Workspace)'
+            displayName: 'Cloning GitHub Repo'
 
+          - script: |
                 git switch $(branchName)
 
                 git remote add github $(remoteGitHub)
                 git remote add azure $(repoAzure)
-              workingDirectory: '$(Pipeline.Workspace)'
-            displayName: 'Cloning GitHub Repo'
+            workingDirectory: '$(Build.BinariesDirectory)'
+            displayName: 'Configure remote Repo'
 
           - script: |
                 git pull azure $(branchName)
