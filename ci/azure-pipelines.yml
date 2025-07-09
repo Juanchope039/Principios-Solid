@@ -95,7 +95,7 @@ stages:
                 git config --global user.email "$(email)"
                 git config --global user.name "$(name)"
               workingDirectory: '$(Pipeline.Workspace)'
-              displayName: 'Configure Tokens'
+            displayName: 'Configure Tokens'
 
           - task: Bash@3
             inputs:
@@ -112,7 +112,7 @@ stages:
                         eof
               workingDirectory: '$(Pipeline.Workspace)'
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
-              displayName: 'Cache GitHub credentials.'
+            displayName: 'Cache GitHub credentials.'
 
           - script: |
                 echo git push github $(branchName)
