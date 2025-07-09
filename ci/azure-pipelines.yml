@@ -40,6 +40,8 @@ stages:
               script: |
                 echo Hello world
                 dir
+                java -help
+                javac ./src/main/java/com/juanchope039/calculadora/App.java
                 java -cp ./src/main/java/ ./src/main/java/com/juanchope039/calculadora/App.java
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
