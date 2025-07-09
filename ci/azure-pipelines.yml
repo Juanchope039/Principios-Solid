@@ -43,9 +43,9 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                git clone $(repoGitHub)
+                git clone $(repoGitHub) $(Build.BinariesDirectory)
                 dir
-              workingDirectory: '$(Build.BinariesDirectory)'
+              workingDirectory: '$(Pipeline.Workspace)'
             displayName: 'Cloning GitHub Repo'
 
           - task: Bash@3
