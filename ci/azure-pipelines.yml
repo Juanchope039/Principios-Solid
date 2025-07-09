@@ -12,10 +12,8 @@ stages:
     jobs:
       - job: BuidTest
         displayName: Build Test
-        workspace:
-          clean: resources
         steps:
-          - checkout: none #skip checking out the default repository resource
+          - checkout: self
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -73,17 +71,11 @@ stages:
         dependsOn: CloneRepo
         steps:
           - checkout: none #skip checking out the default repository resource
-
-          - script: |
-                git status
-                dir
-            workingDirectory: '$(Build.SourcesDirectory)'
-            displayName: 'test'
           - task: DownloadPipelineArtifact@2
             displayName: 'Download Pipeline Artifact'
             inputs:
               artifactName: workingSpace
-              targetPath: '$(Build.SourcesDirectory)'
+              targetPath: '$(Build.ArtifactStagingDirectory)'
           
           - task: Bash@3
             inputs:
@@ -96,7 +88,7 @@ stages:
 
                 git status
                 dir
-              workingDirectory: '$(Build.SourcesDirectory)/p'
+              workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
             displayName: 'Configure Tokens'
 
           - task: Bash@3
@@ -113,7 +105,7 @@ stages:
                           password=${GITHUB_TOKEN}
                         eof
               bashEnvValue: 'GITHUB_TOKEN: $(gitHubPath)'
-              workingDirectory: '$(Build.SourcesDirectory)/p'
+              workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
             displayName: 'Cache GitHub credentials.'
 
           - script: |
@@ -121,5 +113,5 @@ stages:
                 dir
                 echo git push github $(branchName)
                 git push github $(branchName)
-            workingDirectory: '$(Build.SourcesDirectory)/p'
+            workingDirectory: '$(Build.ArtifactStagingDirectory)/p'
             displayName: 'Settings push Repo'
