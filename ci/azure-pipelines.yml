@@ -35,8 +35,8 @@ stages:
                 dir
                 java -version
                 javac -version
-                dir ./src/com/principios/
-                java -cp ./src/com/principios/ ./src/com/principios/Main.java
+                dir ./src/com/principios/solid
+                java -cp ./src/com/principios/ ./src/com/principios/solid/Main.java
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
 #                dir ./src/main/java/com/juanchope039/calculadora/
