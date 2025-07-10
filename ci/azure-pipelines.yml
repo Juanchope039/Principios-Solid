@@ -30,29 +30,16 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                dir
-                cd src
-                dir
-                cd com
-                dir
-                cd principios
-                dir
-                cd calculadora
-              workingDirectory: '$(Build.SourcesDirectory)'
-            displayName: Directory test
-
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: |
                 echo Hello world
                 dir
                 java -version
                 javac -version
-                dir ./src/main/java/com/juanchope039/calculadora/
-                java -cp ./src/main/java/ ./src/main/java/com/juanchope039/calculadora/App.java
+                dir ./src/com/principios/
+                java -cp ./src/com/principios/ ./src/com/principios/Main.java
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
+#                dir ./src/main/java/com/juanchope039/calculadora/
+#                java -cp ./src/main/java/ ./src/main/java/com/juanchope039/calculadora/App.java
 #                javac ./src/main/java/com/juanchope039/calculadora/App.java
 
   - stage: Push
