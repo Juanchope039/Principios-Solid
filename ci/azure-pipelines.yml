@@ -10,7 +10,7 @@ stages:
         workspace:
           clean: all
         steps:
-          - checkout: self
+#          - checkout: self
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -36,8 +36,9 @@ stages:
                 java -version
                 javac -version
                 dir ./src/com/principios/
-                dir ./src/com/principios/solid
-                java -cp ./src/com/ ./src/com/principios/Main.java
+                dir ./src/com/principios/solid/
+                dir ./src/
+                java -cp ./src/com/ ./src/Main.java
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
 #                dir ./src/main/java/com/juanchope039/calculadora/
