@@ -37,7 +37,7 @@ stages:
                 javac -version
                 dir ./src/com/principios/
                 dir ./src/com/principios/solid
-                java -cp ./src/com/principios/ ./src/com/principios/Main.java
+                java -cp ./src/com/ ./src/com/principios/Main.java
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
 #                dir ./src/main/java/com/juanchope039/calculadora/
