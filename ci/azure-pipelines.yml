@@ -5,8 +5,8 @@ stages:
   - stage: Build
     displayName: Build
     jobs:
-      - job: Buid
-        displayName: Build Test
+      - job: BuidJob
+        displayName: Build 
         workspace:
           clean: all
         steps:
@@ -21,6 +21,7 @@ stages:
 
       - job: BuidTest
         displayName: Build Test
+        dependsOn: BuidJob
         workspace:
           clean: all
         steps:
