@@ -18,11 +18,7 @@ stages:
                 echo Hello world
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
-
-  - stage: Test
-    displayName: BuildTest
-    dependsOn: Build
-    jobs:
+            
       - job: BuidTest
         displayName: Build Test
         workspace:
