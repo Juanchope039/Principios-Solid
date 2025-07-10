@@ -36,10 +36,15 @@ stages:
               script: |
                 dir
                 cd src
+                dir
                 cd main
+                dir
                 cd java
+                dir
                 cd com
+                dir
                 cd juanchope039
+                dir
                 cd calculadora
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Directory test
