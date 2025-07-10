@@ -18,7 +18,7 @@ stages:
                 echo Hello world
               workingDirectory: '$(Build.SourcesDirectory)'
             displayName: Hello world!
-            
+
       - job: BuidTest
         displayName: Build Test
         workspace:
@@ -33,13 +33,9 @@ stages:
                 dir
                 cd src
                 dir
-                cd main
-                dir
-                cd java
-                dir
                 cd com
                 dir
-                cd juanchope039
+                cd principios
                 dir
                 cd calculadora
               workingDirectory: '$(Build.SourcesDirectory)'
